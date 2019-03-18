@@ -53,8 +53,8 @@ namespace WpfApp1
             //bind the graph to the viewer 
             viewer.Graph = graph;
             //associate the viewer with the form 
-            form.Width = 600;
-            form.Height = 600;
+            form.Width = 500;
+            form.Height = 500;
             form.Text = "DFS";
             form.SuspendLayout();
             viewer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -232,7 +232,6 @@ namespace WpfApp1
 
             foreach (var q in queries)
             {
-                QueryNowfFeld.Text = q;
                 bool result = T.CekQuery(q);
                 string[] words = q.Split(' ');
 
@@ -313,6 +312,49 @@ namespace WpfApp1
             // Add the interop host control to the Grid
             // control's collection of child controls.
             this.grid2.Children.Add(host);
+        }
+
+        private void Insert(object sender, RoutedEventArgs e)
+        {
+            Parser p = new Parser();
+            List<List<string>> graph = p.ParseMap(this.MapField.Text);
+            string q = InsertQueryField.Text;
+            TopologicalSort T = new TopologicalSort(Map);
+
+            bool result = T.CekQuery(q);
+            string[] words = q.Split(' ');
+
+            List<string> nodes = new List<string>();
+            bool found = false;
+            T.CekJalur(Int32.Parse(words[2]), Int32.Parse(words[1]), ref found, Int32.Parse(words[0]), ref nodes);
+
+            ResultText.Text += "Apakah bisa Ferdiant begerak dari rumah ";
+            ResultText.Text += words[2];
+            ResultText.Text += " ke rumah ";
+            ResultText.Text += words[1];
+            if (words[0] == "1")
+            {
+                ResultText.Text += " menjauhi istana\n";
+            }
+            else
+            {
+                ResultText.Text += " mendekati istana\n";
+            }
+            string str;
+            if (result)
+            {
+                str = "YA";
+                ResultText.Text += ">> YA\n";
+            }
+            else
+            {
+                str = "TIDAK";
+                ResultText.Text += ">> TIDAK\n";
+            }
+
+            GraphAnimation.view(graph, nodes, words[2], words[1], str);
+            nodes = new List<string>();
+            T.ResetVisited();
         }
     }
 }
