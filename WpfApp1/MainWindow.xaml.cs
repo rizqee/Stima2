@@ -166,23 +166,28 @@ namespace WpfApp1
             if ((bool)openFileDlg.ShowDialog())
             {
                 MapField.Text = openFileDlg.FileName;
-            }
 
-            // Write
-            using (TextReader reader = File.OpenText(MapField.Text))
-            {
-                string line = reader.ReadLine();
-                int counter = 0;
-                MapText.Text = "Text uploaded:\n";
-                MapText.Text += line + "\n";
-                line = reader.ReadLine();
-                while (line != null)
+
+                // Write
+                using (TextReader reader = File.OpenText(MapField.Text))
                 {
-                    Map.Add(line);
+                    string line = reader.ReadLine();
+                    int counter = 0;
+                    MapText.Text = "Text uploaded:\n";
                     MapText.Text += line + "\n";
-                    counter++;
                     line = reader.ReadLine();
+                    while (line != null)
+                    {
+                        Map.Add(line);
+                        MapText.Text += line + "\n";
+                        counter++;
+                        line = reader.ReadLine();
+                    }
                 }
+            }
+            else
+            {
+                MapText.Text = "No File Included";
             }
         }
 
@@ -198,20 +203,24 @@ namespace WpfApp1
             if ((bool)openFileDlg.ShowDialog())
             {
                 QueryField.Text = openFileDlg.FileName;
-            }
 
-            // Write
-            using (TextReader reader = File.OpenText(QueryField.Text))
-            {
-                string line = reader.ReadLine();
-                int counter = 0;
-                QueryText.Text = "Text uploaded:\n";
-                while (line != null)
+                // Write
+                using (TextReader reader = File.OpenText(QueryField.Text))
                 {
-                    QueryText.Text += line + "\n";
-                    counter++;
-                    line = reader.ReadLine();
+                    string line = reader.ReadLine();
+                    int counter = 0;
+                    QueryText.Text = "Text uploaded:\n";
+                    while (line != null)
+                    {
+                        QueryText.Text += line + "\n";
+                        counter++;
+                        line = reader.ReadLine();
+                    }
                 }
+            }
+            else
+            {
+                QueryText.Text = "No File Included";
             }
         }
 
@@ -219,7 +228,14 @@ namespace WpfApp1
         {
             Parser p = new Parser();
             List<List<string>> graph = p.ParseMap(this.MapField.Text);
-            LoadGrid(graph);
+            if (graph == null)
+            {
+                MapText.Text = "Empty";
+            }
+            else
+            {
+                LoadGrid(graph);
+            }
         }
 
 
@@ -228,46 +244,53 @@ namespace WpfApp1
             Parser p = new Parser();
             List<List<string>> graph = p.ParseMap(this.MapField.Text);
             List<string> queries = p.ParseQuery(this.QueryField.Text);
-            TopologicalSort T = new TopologicalSort(Map);
-
-            foreach (var q in queries)
+            if (queries == null && graph == null)
             {
-                bool result = T.CekQuery(q);
-                string[] words = q.Split(' ');
+                QueryText.Text = "No graph can be shown";
+            }
+            else
+            {
+                TopologicalSort T = new TopologicalSort(Map);
 
-                List<string> nodes = new List<string>();
-                bool found = false;
-                T.CekJalur(Int32.Parse(words[2]), Int32.Parse(words[1]), ref found, Int32.Parse(words[0]), ref nodes);
+                foreach (var q in queries)
+                {
+                    bool result = T.CekQuery(q);
+                    string[] words = q.Split(' ');
 
-                ResultText.Text += "Apakah bisa Ferdiant begerak dari rumah ";
-                ResultText.Text += words[2];
-                ResultText.Text += " ke rumah ";
-                ResultText.Text += words[1];
-                if (words[0] == "1")
-                {
-                    ResultText.Text += " menjauhi istana\n";
-                }
-                else
-                {
-                    ResultText.Text += " mendekati istana\n";
-                }
-                string str;
-                if (result)
-                {
-                    str = "YA";
-                    ResultText.Text += ">> YA\n";
-                }
-                else
-                {
-                    str = "TIDAK";
-                    ResultText.Text += ">> TIDAK\n";
-                }
+                    List<string> nodes = new List<string>();
+                    bool found = false;
+                    T.CekJalur(Int32.Parse(words[2]), Int32.Parse(words[1]), ref found, Int32.Parse(words[0]), ref nodes);
 
-                GraphAnimation.view(graph, nodes, words[2], words[1],str);
-                Task.Delay(1000).Wait();
-                nodes = new List<string>();
-                T.ResetVisited();
+                    ResultText.Text += "Apakah bisa Ferdiant begerak dari rumah ";
+                    ResultText.Text += words[2];
+                    ResultText.Text += " ke rumah ";
+                    ResultText.Text += words[1];
+                    if (words[0] == "1")
+                    {
+                        ResultText.Text += " menjauhi istana\n";
+                    }
+                    else
+                    {
+                        ResultText.Text += " mendekati istana\n";
+                    }
+                    string str;
+                    if (result)
+                    {
+                        str = "YA";
+                        ResultText.Text += ">> YA\n";
+                    }
+                    else
+                    {
+                        str = "TIDAK";
+                        ResultText.Text += ">> TIDAK\n";
+                    }
 
+                    GraphAnimation.view(graph, nodes, words[2], words[1], str);
+                    Task.Delay(1000).Wait();
+                    nodes = new List<string>();
+                    T.ResetVisited();
+
+                }
             }
         }
 
@@ -319,42 +342,49 @@ namespace WpfApp1
             Parser p = new Parser();
             List<List<string>> graph = p.ParseMap(this.MapField.Text);
             string q = InsertQueryField.Text;
-            TopologicalSort T = new TopologicalSort(Map);
-
-            bool result = T.CekQuery(q);
-            string[] words = q.Split(' ');
-
-            List<string> nodes = new List<string>();
-            bool found = false;
-            T.CekJalur(Int32.Parse(words[2]), Int32.Parse(words[1]), ref found, Int32.Parse(words[0]), ref nodes);
-
-            ResultText.Text += "Apakah bisa Ferdiant begerak dari rumah ";
-            ResultText.Text += words[2];
-            ResultText.Text += " ke rumah ";
-            ResultText.Text += words[1];
-            if (words[0] == "1")
+            if (q == "")
             {
-                ResultText.Text += " menjauhi istana\n";
+                ResultText.Text = "Query Kosong";
             }
             else
             {
-                ResultText.Text += " mendekati istana\n";
-            }
-            string str;
-            if (result)
-            {
-                str = "YA";
-                ResultText.Text += ">> YA\n";
-            }
-            else
-            {
-                str = "TIDAK";
-                ResultText.Text += ">> TIDAK\n";
-            }
+                TopologicalSort T = new TopologicalSort(Map);
 
-            GraphAnimation.view(graph, nodes, words[2], words[1], str);
-            nodes = new List<string>();
-            T.ResetVisited();
+                bool result = T.CekQuery(q);
+                string[] words = q.Split(' ');
+
+                List<string> nodes = new List<string>();
+                bool found = false;
+                T.CekJalur(Int32.Parse(words[2]), Int32.Parse(words[1]), ref found, Int32.Parse(words[0]), ref nodes);
+
+                ResultText.Text += "Apakah bisa Ferdiant begerak dari rumah ";
+                ResultText.Text += words[2];
+                ResultText.Text += " ke rumah ";
+                ResultText.Text += words[1];
+                if (words[0] == "1")
+                {
+                    ResultText.Text += " menjauhi istana\n";
+                }
+                else
+                {
+                    ResultText.Text += " mendekati istana\n";
+                }
+                string str;
+                if (result)
+                {
+                    str = "YA";
+                    ResultText.Text += ">> YA\n";
+                }
+                else
+                {
+                    str = "TIDAK";
+                    ResultText.Text += ">> TIDAK\n";
+                }
+
+                GraphAnimation.view(graph, nodes, words[2], words[1], str);
+                nodes = new List<string>();
+                T.ResetVisited();
+            }
         }
     }
 }
