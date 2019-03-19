@@ -25,3 +25,30 @@ C:\Codes\Semester 4\WpfApp1\WpfApp1\bin\Debug\System.Collections.Immutable.dll
 C:\Codes\Semester 4\WpfApp1\WpfApp1\bin\Debug\Shields.GraphViz.xml
 C:\Codes\Semester 4\WpfApp1\WpfApp1\bin\Debug\System.Collections.Immutable.xml
 C:\Codes\Semester 4\WpfApp1\WpfApp1\bin\Debug\WindowFormExtended.dll
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\WpfApp1.exe.config
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\WpfApp1.exe
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\WpfApp1.pdb
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\Microsoft.Msagl.dll
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\Microsoft.Msagl.Drawing.dll
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\Microsoft.Msagl.GraphViewerGdi.dll
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\Shields.GraphViz.dll
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\System.Collections.Immutable.dll
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\WindowFormExtended.dll
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\Microsoft.Msagl.xml
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\Microsoft.Msagl.Drawing.xml
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\Microsoft.Msagl.GraphViewerGdi.xml
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\Shields.GraphViz.xml
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\bin\Debug\System.Collections.Immutable.xml
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\WpfApp1.csprojAssemblyReference.cache
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\MainWindow.g.cs
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\App.g.cs
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.cache
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\WpfApp1_MarkupCompile.lref
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\MainWindow.baml
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\WpfApp1.g.resources
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\WpfApp1.Properties.Resources.resources
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\WpfApp1.csproj.GenerateResource.cache
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\WpfApp1.csproj.CoreCompileInputs.cache
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\WpfApp1.csproj.CopyComplete
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\WpfApp1.exe
+C:\Users\USER\Documents\GitHub\Stima2\WpfApp1\obj\Debug\WpfApp1.pdb
