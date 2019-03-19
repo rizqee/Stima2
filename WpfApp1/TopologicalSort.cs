@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace WpfApp1
 {
+    // Struktur data Node
     public class Node
     {
         public bool visited;
@@ -13,6 +14,7 @@ namespace WpfApp1
         public long arrive;
         public long leave;
 
+        // Ctor
         public Node()
         {
             this.visited = false;
@@ -22,6 +24,7 @@ namespace WpfApp1
         }
     }
 
+    // Class TopologicalSort yang mengelola semua atribut dan metode dalam DFS
     public class TopologicalSort
     {
         public List<List<string>> tree;
@@ -29,6 +32,7 @@ namespace WpfApp1
         public int jumlahrumah;
         public List<Node> rumah = new List<Node>();
 
+        // Prosedur ResetVisited untuk mereset ulang visitedCek menjadi false semua
         public void ResetVisited()
         {
             foreach (var r in rumah)
@@ -37,6 +41,7 @@ namespace WpfApp1
             }
         }
 
+        // prosedure DFS untuk melakukan pencarian graf DFS 
         public void DFS(int startNode, ref List<List<string>> tree)
         {
             rumah[startNode].visited = true;
@@ -45,17 +50,19 @@ namespace WpfApp1
             {
                 if (!rumah[Int32.Parse(childNode)].visited)
                 {
-                    DFS(Int32.Parse(childNode), ref tree);
+                    DFS(Int32.Parse(childNode), ref tree); // Rekursif
                 }
             }
             rumah[startNode].leave = globalTime++;
         }
-
-        public bool isChildOf(int nodeChild, int nodeParent)
+        
+        // fungsi isChildOf untuk mengetahui apakah kedua simpul memiliki hubungan child dan parent
+        public bool isChildOf(int child, int parent)
         {
-            return rumah[nodeChild].arrive > rumah[nodeParent].arrive && rumah[nodeChild].leave < rumah[nodeParent].leave;
+            return rumah[child].arrive > rumah[parent].arrive && rumah[parent].leave > rumah[child].leave;
         }
 
+        // prosedur CekJalur untuk mencari jalur-jalur yang akan dilewati oleh pencarian DFS
         public void CekJalur(int start, int finish, ref bool found, int q, ref List<string> nodes)
         {
             nodes.Add(start.ToString());
@@ -66,7 +73,7 @@ namespace WpfApp1
                 {
                     if (!found)
                     {
-                        if (q == 0)
+                        if (q == 0) // Mendekati istana
                         {
                             if (isChildOf(start, Int32.Parse(childNode)))
                             {
@@ -75,10 +82,10 @@ namespace WpfApp1
                                     nodes.Add(childNode.ToString());
                                     found = true;
                                     return;
-                                } else CekJalur(Int32.Parse(childNode), finish, ref found, q, ref nodes);
+                                } else CekJalur(Int32.Parse(childNode), finish, ref found, q, ref nodes); // Rekursif
                             }
                         }
-                        else if (q == 1)
+                        else if (q == 1) // Menjauhi istana
                         {
                             if (isChildOf(Int32.Parse(childNode), start))
                             {
@@ -87,7 +94,7 @@ namespace WpfApp1
                                     nodes.Add(childNode.ToString());
                                     found = true;
                                     return;
-                                } else CekJalur(Int32.Parse(childNode), finish, ref found, q, ref nodes);
+                                } else CekJalur(Int32.Parse(childNode), finish, ref found, q, ref nodes); // Rekursif
                             }
                         }
                     }
@@ -95,13 +102,14 @@ namespace WpfApp1
             }
         }
 
+        // Ctor
         public TopologicalSort(List<string> map)
         {
             int jmlRumah = map.Count+1;
             jumlahrumah = jmlRumah;
-
+            
+            // Inisialisasi
             tree = new List<List<string>>(jmlRumah + 1);
-
             for (int i = 0; i <= jmlRumah; i++)
             {
                 tree.Add(new List<string>());
