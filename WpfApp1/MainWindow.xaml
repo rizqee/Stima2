@@ -6,27 +6,41 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="MainWindow" Height="768" Width="1366" >
-    <Grid Name="grid1">
+    <Grid Name="grid1" Margin="6,0,-6,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="113*"/>
             <RowDefinition Height="624*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="92*"/>
+            <ColumnDefinition Width="35*"/>
+            <ColumnDefinition Width="26*"/>
+            <ColumnDefinition Width="618*"/>
         </Grid.ColumnDefinitions>
-        <TextBox Name="MapField" HorizontalAlignment="Left" Height="20" Margin="932,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Grid.Column="1"/>
-        <Button Name="BrowseBtn1" Content="Browse..." HorizontalAlignment="Left" Margin="1118,52,0,0" VerticalAlignment="Top" Width="74" Click="Browse1" FontFamily="Segoe UI Emoji" Grid.Column="1"/>
-        <TextBlock HorizontalAlignment="Left" Height="17" Margin="932,30,0,0" TextWrapping="Wrap" Text="Load Map (.txt)" VerticalAlignment="Top" Width="260" Grid.Column="1"/>
-        <Button Name="DrawBtn" Content="Draw" HorizontalAlignment="Left" Height="20" Margin="932,215,0,0" VerticalAlignment="Top" Width="260" Click="Draw" Grid.Column="1" Grid.Row="1"/>
-        <TextBox x:Name="MapText" HorizontalAlignment="Left" Height="217" Margin="932,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Grid.Column="1" Grid.RowSpan="2"/>
-        <Button x:Name="SolveBtn" Content="Solve" HorizontalAlignment="Left" Margin="932,549,0,0" VerticalAlignment="Top" Width="261" Click="Solve" Height="20" Grid.Column="1" Grid.Row="1"/>
-        <TextBlock HorizontalAlignment="Left" Height="17" Margin="932,250,0,0" TextWrapping="Wrap" Text="Load Query (.txt)" VerticalAlignment="Top" Width="260" Grid.Column="1" Grid.Row="1"/>
-        <TextBox x:Name="QueryField" HorizontalAlignment="Left" Height="20" Margin="932,272,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Grid.Column="1" Grid.Row="1"/>
-        <Button x:Name="BrowseBtn2" Content="Browse..." HorizontalAlignment="Left" Margin="1118,272,0,0" VerticalAlignment="Top" Width="74" Click="Browse2" FontFamily="Segoe UI Emoji" Grid.Column="1" Grid.Row="1"/>
-        <TextBox x:Name="QueryText" HorizontalAlignment="Left" Height="217" Margin="932,310,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Grid.Column="1" Grid.Row="1"/>
-        <Grid HorizontalAlignment="Left" Height="318" Margin="457,30,0,0" VerticalAlignment="Top" Width="396" x:Name="grid2" Grid.Column="1" Grid.RowSpan="2"/>
-        <Grid x:Name="grid3" HorizontalAlignment="Left" Height="319" Margin="457,250,0,0" VerticalAlignment="Top" Width="396" Grid.Column="1" Grid.Row="1"/>
-        <TextBlock x:Name="ResultText" Grid.Column="1" HorizontalAlignment="Left" Height="319" Margin="10,250,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="372"/>
+        <Rectangle Grid.Column="2" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="679" Margin="408,14,0,0" Grid.RowSpan="2" Stroke="Black" VerticalAlignment="Top" Width="778"/>
+        <TextBox x:Name="MapField" HorizontalAlignment="Left" Height="20" Margin="880,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Grid.Column="2"/>
+        <Button x:Name="BrowseBtn1" Content="Browse..." HorizontalAlignment="Left" Margin="1066,42,0,0" VerticalAlignment="Top" Width="74" Click="Browse1" FontFamily="Segoe UI Emoji" Grid.Column="2"/>
+        <TextBlock HorizontalAlignment="Left" Height="17" Margin="880,20,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Grid.Column="2"><Run FontWeight="Bold" Text="Load Map (.txt)"/></TextBlock>
+        <Button x:Name="DrawBtn" Content="Draw" HorizontalAlignment="Left" Height="20" Margin="880,205,0,0" VerticalAlignment="Top" Width="260" Click="Draw" Grid.Column="2" Grid.Row="1"/>
+        <TextBox x:Name="MapText" HorizontalAlignment="Left" Height="217" Margin="880,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Grid.Column="2" Grid.RowSpan="2"/>
+        <Button x:Name="SolveBtn" Content="Solve" HorizontalAlignment="Left" Margin="880,539,0,0" VerticalAlignment="Top" Width="261" Click="Solve" Height="20" Grid.Column="2" Grid.Row="1"/>
+        <TextBlock HorizontalAlignment="Left" Height="17" Margin="880,240,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Grid.Column="2" Grid.Row="1"><Run FontWeight="Bold" Text="Load Queries (.txt)"/></TextBlock>
+        <TextBox x:Name="QueryField" HorizontalAlignment="Left" Height="20" Margin="880,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Grid.Column="2" Grid.Row="1"/>
+        <Button x:Name="BrowseBtn2" Content="Browse..." HorizontalAlignment="Left" Margin="1066,262,0,0" VerticalAlignment="Top" Width="74" Click="Browse2" FontFamily="Segoe UI Emoji" Grid.Column="2" Grid.Row="1"/>
+        <TextBox x:Name="QueryText" HorizontalAlignment="Left" Height="217" Margin="880,304,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="260" Grid.Column="2" Grid.Row="1"/>
+        <Grid HorizontalAlignment="Left" Height="318" Margin="457,20,0,0" VerticalAlignment="Top" Width="396" x:Name="grid2" Grid.Column="2" Grid.RowSpan="2">
+            <TextBlock HorizontalAlignment="Left" Height="20" Margin="0,326,0,-28" TextWrapping="Wrap" Text="Query Result" VerticalAlignment="Top" Width="386" FontWeight="Bold"/>
+        </Grid>
+        <TextBox x:Name="InsertQueryField" Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="554,539,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="185"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="466,539,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Insert Query" VerticalAlignment="Top" Width="107" FontWeight="Bold"/>
+        <TextBox x:Name="ResultText" Grid.Column="2" HorizontalAlignment="Left" Height="259" Margin="453,262,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="396"/>
+        <Rectangle Grid.ColumnSpan="3" Fill="#FF464646" HorizontalAlignment="Left" Height="737" Stroke="Black" VerticalAlignment="Top" Width="482" Grid.RowSpan="2" Margin="-2,0,0,0"/>
+        <TextBlock HorizontalAlignment="Left" Height="118" Margin="62,6,0,0" Grid.Row="1" TextWrapping="Wrap" Text="HIDE AND SEEK" VerticalAlignment="Top" Width="332" FontFamily="Bebas Neue" FontSize="72" Foreground="#FFE2E2E2" Grid.ColumnSpan="3"/>
+        <Image  Margin="-14,92,890,212" Grid.ColumnSpan="3" Grid.Row="1">
+            <Image.Source>
+                <BitmapImage UriSource="C:\Codes\Semester 4\WpfApp1\WpfApp1\images\graph.png" />
+            </Image.Source>
+        </Image>
+        <TextBlock Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="154" Margin="52,428,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="360" FontFamily="Rockwell" FontSize="22" Foreground="#FFE2E2E2"><Run Text="Created By:"/><LineBreak/><Run Text="Ahmad Rizqee Nurhani 13517058"/><LineBreak/><Run Text="Juniardi Akbar 13517075"/><LineBreak/><Run Text="Jofiandy Leonata Pratama 13517135"/></TextBlock>
+        <Button Content="Insert" Grid.Column="2" HorizontalAlignment="Left" Height="20" Margin="762,539,0,0" Grid.Row="1" VerticalAlignment="Top" Width="91" Click="Insert"/>
     </Grid>
 </Window>
