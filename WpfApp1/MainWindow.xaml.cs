@@ -24,7 +24,7 @@ namespace WpfApp1
     /// </summary>
 
     class GraphAnimation
-    { 
+    {
         public static void view(List<List<string>> graphdetails, List<string> nodes, string start, string finish, string e)
         {
             //create a form 
@@ -86,6 +86,7 @@ namespace WpfApp1
 
     public class Parser
     {
+        // Parse Map dari file eksternal
         public List<List<string>> ParseMap(string filename)
         {
             List<List<string>> graph = new List<List<string>>();
@@ -118,6 +119,7 @@ namespace WpfApp1
             return graph;
         }
 
+        // Parse query dari file eksternal
         public List<string> ParseQuery(string filename)
         {
             List<string> query = new List<string>();
@@ -154,6 +156,7 @@ namespace WpfApp1
             mw.WindowState = WindowState.Maximized;
         }
 
+        // Tombol browse map ditekan
         private void Browse1(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDlg = new OpenFileDialog();
@@ -191,6 +194,7 @@ namespace WpfApp1
             }
         }
 
+        // Tombol browse query ditekan
         private void Browse2(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDlg = new OpenFileDialog();
@@ -224,6 +228,7 @@ namespace WpfApp1
             }
         }
 
+        // Gambar peta negeri antah berantah
         private void Draw(object sender, RoutedEventArgs e)
         {
             Parser p = new Parser();
@@ -238,7 +243,7 @@ namespace WpfApp1
             }
         }
 
-
+        // Tombol Solve ditekan
         private void Solve(object sender, RoutedEventArgs e)
         {
             Parser p = new Parser();
@@ -294,6 +299,7 @@ namespace WpfApp1
             }
         }
 
+        // MEnggambar graf di salah satu grid
         private void LoadGrid(List<List<String>> graphdetails)
         {
             // Create the interop host control.
@@ -337,6 +343,7 @@ namespace WpfApp1
             this.grid2.Children.Add(host);
         }
 
+        // Tombol insert query ditekan
         private void Insert(object sender, RoutedEventArgs e)
         {
             Parser p = new Parser();
